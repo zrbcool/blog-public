@@ -107,9 +107,14 @@ metadata:
     service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
     service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2zec8x×××××××××965vt
 ```
-### 填坑篇
+##### 方式一（Cluster） vs 方式二（Local）
+ 对比 | Cluster | Local
+----|------|----
+优点 | 简单，K8S的默认方式  | 减少网络转发，性能好，能获取客户端真实IP
+缺点 | SNAT地址伪装网络上增加一跳，性能下降，无法获取客户端真实IP  | 需要对节点的端口是否打开做检查，需要自定义服务发现（阿里云这块已经做了与SLB的集成）
+### 绕坑篇
 #### nginx worker进程数的问题
-我们直到nginx的默认配置worker_processes为auto的时候，会根据当前主机cpu信息自动计算，但是nginx并不是一个cgroups aware的应用，所以其会盲目“自大”的认为有“好多”cpu可以用，这里我们就需要对其进行指定，可以在configmap中设置参数：
+我们知道nginx的默认配置worker_processes为auto的时候，会根据当前主机cpu信息自动计算，但是nginx并不是一个cgroups aware的应用，所以其会盲目“自大”的认为有“好多”cpu可以用，这里我们就需要对其进行指定，可以在configmap中设置参数：
 ```
 apiVersion: v1
 data:
@@ -179,8 +184,9 @@ spec:
 监控部署的参考文档奉上：[请点击我](https://kubernetes.github.io/ingress-nginx/user-guide/monitoring/)
 自定义的dashboard上传到我个人的github上了：[请点击我](https://github.com/zrbcool/blog-public/blob/master/k8s%20ingress%20resources/customized%20ingress%20dashboard.json)
 ### troubleshooting
-#### 抓包
 #### dump nginx.conf文件
+请参考这篇文章
+https://docs.nginx.com/nginx/admin-guide/monitoring/debugging/#dumping-nginx-configuration-from-a-running-process
 ### refs
 http://bogdan-albei.blogspot.com/2017/09/kernel-tuning-in-kubernetes.html
 https://danielfm.me/posts/painless-nginx-ingress.html
