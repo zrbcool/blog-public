@@ -185,14 +185,3 @@ spec:
 http://bogdan-albei.blogspot.com/2017/09/kernel-tuning-in-kubernetes.html
 https://danielfm.me/posts/painless-nginx-ingress.html
 https://www.asykim.com/blog/deep-dive-into-kubernetes-external-traffic-policies
-### ingress监控，资源监控
-- connections
-- contrack table usage
-- listen queue overflow
-- tcp timeout rate
-- retransmit segments
-- ingress reload
-- accepted connections
-- handled connections
-- active server connections
-- dropped connections
