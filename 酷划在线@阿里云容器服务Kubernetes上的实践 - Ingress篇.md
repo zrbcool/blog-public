@@ -63,8 +63,7 @@ spec:
 
 ```
 接下来我们来看下nginx-ingress在k8s内部署的资源结构，如图所示：
-（画图太费时间，后面的图可能手绘的会多一点，请见谅）
-![](http://pp2egchi0.bkt.clouddn.com/Fua5Ll6Ug-dx2qGCHuCIQ72HrfOF)
+![](http://pp2egchi0.bkt.clouddn.com/FhnUMZTT4ll37v4qUjIZSssEMwjT)
 可以看到一组nginx-ingress-controller其实由以下几部分组成：
 - ServiceAccount，ClusterRole，ClusterRoleBinding：权限RBAC定义
 - Deployment：控制controller的部署，并依赖ServiceAccount，Configmap，Service
@@ -94,8 +93,7 @@ E0416 11:31:50.831279       6 leaderelection.go:304] Failed to update lock: conf
 ##### 方式一
 Service的spec.externalTrafficPolicy当为Cluster的时候：
 集群当中的每台主机都可以充当三层路由器，起到负载均衡及转发的作用，但是由于其对请求包进行了SNAT操作，如图所示：
-![](http://pp2egchi0.bkt.clouddn.com/FlntGq0Dd9CM1oGy4vr49qwbONRw)
-
+![](http://pp2egchi0.bkt.clouddn.com/Fn5Lpn7EUvC7xXOUCkNIHCHpDbNB)
 这样导致ingress-controller的POD内获取到的client-ip会是转发包过来的那个worker节点的IP，就会导致我们无法获取客户端的真实IP，所以如果我们不关心客户端真实IP的情况，可以使用这种方式，然后将所有的worker节点IP加入到SLB的后端服务列表当中即可
 ##### 方式二
 Service的spec.externalTrafficPolicy当为Local的时候：
