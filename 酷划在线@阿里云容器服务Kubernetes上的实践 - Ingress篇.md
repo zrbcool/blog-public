@@ -1,5 +1,9 @@
+>作者：罗宾，酷划在线后端架构师，关注微服务治理，容器化技术，Service Mesh等技术领域
+
 ### 背景篇
 #### 现状
+酷划在线成立于2014年，是国内激励广告行业的领军者。酷划致力于打造一个用户、广告主、平台三方共赢的激励广告生态体系，旗下产品“酷划锁屏”“淘新闻”分别为锁屏、资讯行业的领跑者。
+
 目前公司的后端架构基本上是微服务的架构模式，所有的入站流量均通过API网关进入到后端服务，API网关起到一个“保护神”的作用，监控着所有进入的请求，并具备防刷，监控接口性能，报警等重要功能，流量通过网关后服务间的调用均为RPC调用。
 ![](http://pp2egchi0.bkt.clouddn.com/FtqXlQ2CZ6kHd1Rfbf6JRzYxrTIJ)
 #### 过渡期
@@ -97,7 +101,7 @@ Service的spec.externalTrafficPolicy当为Cluster的时候：
 这样导致ingress-controller的POD内获取到的client-ip会是转发包过来的那个worker节点的IP，就会导致我们无法获取客户端的真实IP，所以如果我们不关心客户端真实IP的情况，可以使用这种方式，然后将所有的worker节点IP加入到SLB的后端服务列表当中即可
 ##### 方式二
 Service的spec.externalTrafficPolicy当为Local的时候：
-节点只会把请求转给节点内的ingress-controller的POD，不经过SNAT操作ingress controller可以获取到客户端的真实IP，如果节点没有POD，就会报错。这样我们就需要手工维护POD，节点，与SLB后端服务之间的关系。那么有没有一种方式可以自动管理维护这个关系呢？其实是有的，阿里云容器服务为我们做好了这一切，只要在type为LoadBalancer的Service上增加如下几个annotation，它就可以为我们将启动了POD的worker节点的端口及IP自动添加到SLB后端服务当中，扩容缩绒自动更新，如下所示（注意我们使用的是内网SLB，type为intranet，大家根据实际情况修改）：
+节点只会把请求转给节点内的ingress-controller的POD，不经过SNAT操作ingress controller可以获取到客户端的真实IP，如果节点没有POD，就会报错。这样我们就需要手工维护POD，节点，与SLB后端服务之间的关系。那么有没有一种方式可以自动管理维护这个关系呢？其实是有的，阿里云容器服务为我们做好了这一切，只要在type为LoadBalancer的Service上增加如下几个annotation，它就可以为我们将启动了POD的worker节点的端口及IP自动添加到SLB后端服务当中，扩容缩容自动更新，如下所示（注意我们使用的是内网SLB，type为intranet，大家根据实际情况修改）：
 ```
 metadata:
   annotations:
