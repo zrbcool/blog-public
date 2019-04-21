@@ -1,0 +1,39 @@
+apiVersion: v1
+data:
+#  allow-backend-server-header: "true"
+#  enable-underscores-in-headers: "true"
+#  generate-request-id: "true"
+#  ignore-invalid-headers: "true"
+#  max-worker-connections: "65536"
+#  proxy-body-size: 20m
+#  proxy-connect-timeout: "10"
+#  reuse-port: "true"
+#  server-tokens: "false"
+#  ssl-redirect: "false"
+#  worker-cpu-affinity: auto
+  allow-backend-server-header: "true"
+  consolelog-format-upstream: '{ "time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr","x-forward-for":
+    "$proxy_add_x_forwarded_for", "request_id": "$req_id", "remote_user":"$remote_user",
+    "bytes_sent": $bytes_sent, "request_time": $request_time, "status":$status, "vhost":
+    "$host", "request_proto": "$server_protocol", "path": "$uri","request_query":
+    "$args", "request_length": $request_length, "duration": $request_time,"method":
+    "$request_method", "http_referrer": "$http_referer", "http_user_agent":"$http_user_agent"
+    }'
+  enable-vts-status: "true"
+  ignore-invalid-headers: "false"
+  log-format-upstream: '{ "time": "$time_iso8601", "X-Real-IP": "$the_real_ip", "x-forward-for":
+    "$proxy_add_x_forwarded_for", "request_id": "$req_id", "remote_user": "$remote_user",
+    "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "host":
+    "$host", "request_proto": "$server_protocol", "path": "$uri", "request_query":
+    "$args", "request_length": $request_length, "duration": $request_time, "method":
+    "$request_method", "http_referrer": "$http_referer", "http_user_agent": "$http_user_agent"
+    }'
+  proxy-body-size: 300m
+  worker-processes: "8"
+kind: ConfigMap
+metadata:
+  annotations:
+  labels:
+    app: ingress-nginx
+  name: xwz-nginx-configuration
+  namespace: kube-system

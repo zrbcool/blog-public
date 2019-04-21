@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2zec8x6ad9x3w5zq965vt
+  labels:
+    app: xwz-nginx-ingress-lb
+  name: xwz-nginx-ingress-lb
+  namespace: kube-system
+spec:
+  externalTrafficPolicy: Local
+  healthCheckNodePort: 32638
+  ports:
+  - name: http
+    nodePort: 31668
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: https
+    nodePort: 30397
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    app: xwz-ingress-nginx
+  sessionAffinity: None
+  type: LoadBalancer

@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "xwz"
+  labels:
+    app: tap-revision-ing
+    wayne-app: tap-revision
+    wayne-ns: coohua
+  name: tap-revision-ing
+  namespace: coohua
+spec:
+  rules:
+  - host: staging.coohua.com
+    http:
+      paths:
+      - backend:
+          serviceName: tap-revision-stable
+          servicePort: 80
+        path: /
