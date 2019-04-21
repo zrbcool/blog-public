@@ -1,5 +1,7 @@
 >作者：罗宾，酷划在线后端架构师，关注微服务治理，容器化技术，Service Mesh等技术领域
 
+### 目录
+[TOC]
 ### 背景篇
 #### 现状
 酷划在线成立于2014年，是国内激励广告行业的领军者。酷划致力于打造一个用户、广告主、平台三方共赢的激励广告生态体系，旗下产品“酷划锁屏”“淘新闻”分别为锁屏、资讯行业的领跑者。
@@ -97,12 +99,12 @@ E0416 11:31:50.831279       6 leaderelection.go:304] Failed to update lock: conf
 ...
 ```
 #### 扩容的IC实例如何自动添加到SLB的后端服务列表中
-##### 方式一
+##### 方式一 externalTrafficPolicy=Cluster
 Service的spec.externalTrafficPolicy当为Cluster的时候：
 集群当中的每台主机都可以充当三层路由器，起到负载均衡及转发的作用，但是由于其对请求包进行了SNAT操作，如图所示：
 ![](http://pp2egchi0.bkt.clouddn.com/Fn5Lpn7EUvC7xXOUCkNIHCHpDbNB)
 这样导致IC的POD内获取到的client-ip会是转发包过来的那个worker节点的IP，所以在这个模式下我们无法获取客户端的真实IP，如果我们不关心客户端真实IP的情况，可以使用这种方式，然后将所有的worker节点IP加入到SLB的后端服务列表当中即可。
-##### 方式二
+##### 方式二 externalTrafficPolicy=Local
 Service的spec.externalTrafficPolicy当为Local的时候：
 节点只会把请求转给节点内的IC的POD，由于不经过SNAT操作，IC可以获取到客户端的真实IP，如果节点没有POD，就会报错。这样我们就需要手工维护IC POD，节点，与SLB后端服务之间的关系。那么有没有一种方式可以自动管理维护这个关系呢？其实是有的，阿里云容器服务为我们做好了这一切，只要在type为LoadBalancer的Service上增加如下几个annotation，它就可以为我们将启动了POD的worker节点的端口及IP自动添加到SLB后端服务当中，扩容缩容自动更新，如下所示（注意我们使用的是内网SLB，type为intranet，大家根据实际情况修改）：
 ```
@@ -136,22 +138,22 @@ metadata:
 #### 内核参数设置
 这块我们暂时使用默认的deployment当中给定的参数，后续调优的时候会根据情况调整
 ```
-      initContainers:
-      - command:
-        - /bin/sh
-        - -c
-        - |
-          sysctl -w net.core.somaxconn=65535
-          sysctl -w net.ipv4.ip_local_port_range="1024 65535"
-          sysctl -w fs.file-max=1048576
-          sysctl -w fs.inotify.max_user_instances=16384
-          sysctl -w fs.inotify.max_user_watches=524288
-          sysctl -w fs.inotify.max_queued_events=16384
+initContainers:
+- command:
+  - /bin/sh
+    - -c
+    - |
+      sysctl -w net.core.somaxconn=65535
+      sysctl -w net.ipv4.ip_local_port_range="1024 65535"
+      sysctl -w fs.file-max=1048576
+      sysctl -w fs.inotify.max_user_instances=16384
+      sysctl -w fs.inotify.max_user_watches=524288
+      sysctl -w fs.inotify.max_queued_events=16384
 ```
 #### 客户端真实IP问题
 小流量灰度期间业务同学反馈说第三方的反作弊发现我们调用他们的接口异常，一轮分析下来发现，原来是发给第三方请求中携带的客户端IP被写为了我们API网关的主机IP 
 还记得前面的架构图吗？
-![](http://pp2egchi0.bkt.clouddn.com/FtFETZ7Ngjn7iomBzcTxUN9dk8qc)
+![](http://pp2egchi0.bkt.clouddn.com/FkN4eqHNFlqruc8Z7oG_SfKllhgs)
 出现这个问题的原因就是我们的IC被放到了OpenResty后面，查看到IC的template中对X-REAL-IP设置的代码部分如下：
 ![](http://pp2egchi0.bkt.clouddn.com/Fk2yvF82fpL6_KP3fkOErj5oZJ5X)
 这个the_real_ip又是哪来的呢？
@@ -192,7 +194,7 @@ spec:
 #### dump nginx.conf文件
 请参考这篇文章
 https://docs.nginx.com/nginx/admin-guide/monitoring/debugging/#dumping-nginx-configuration-from-a-running-process
-### refs
+### Refs
 https://yq.aliyun.com/articles/692732?spm=a2c4e.11163080.searchblog.53.764b2ec1hJYa02
 https://yq.aliyun.com/articles/645856?spm=a2c4e.11163080.searchblog.97.764b2ec1hJYa02
 http://bogdan-albei.blogspot.com/2017/09/kernel-tuning-in-kubernetes.html
