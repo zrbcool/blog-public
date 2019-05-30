@@ -49,13 +49,13 @@ ping -c 30 172.16.13.218
 ### 同可用区网络性能测试
 #### 机型说明
 **测试机型选用ecs.sn1ne.2xlarge，规格详情如下**
-![](http://pp2egchi0.bkt.clouddn.com/Fh3HhlfHmLAGPTJFpvZjEDzPCBy2)
+![](http://oss.zrbcool.top/Fh3HhlfHmLAGPTJFpvZjEDzPCBy2)
 
 #### 测试结果
 
 说明：纵轴表达流量流出方向，横轴表达流量流入方向，所以组合情况一共有9种
 
-![](http://pp2egchi0.bkt.clouddn.com/FqPXS2zNmi4ySOjTcI2Ck2W1B6eg)
+![](http://oss.zrbcool.top/FqPXS2zNmi4ySOjTcI2Ck2W1B6eg)
 名词解释：
 - terway-eni：代表动态创建弹性网卡并绑定POD的terway网络模式
 - terway：代表默认的terway网络模式	
@@ -67,13 +67,13 @@ ping -c 30 172.16.13.218
 ### 跨可用区网络性能测试
 测试机型选用ecs.sn1ne.8xlarge，规格详情如下
 
-![](http://pp2egchi0.bkt.clouddn.com/FhU8GsIVZqhMDAOTHz0vod8dJq6D)
+![](http://oss.zrbcool.top/FhU8GsIVZqhMDAOTHz0vod8dJq6D)
 
 #### 测试结果
 
 说明：纵轴表达流量流出方向，横轴表达流量流入方向，所以组合情况一共有9种
 
-![](http://pp2egchi0.bkt.clouddn.com/FotUG6Qumrh1U3VNCkE-rLv_B7e_)
+![](http://oss.zrbcool.top/FotUG6Qumrh1U3VNCkE-rLv_B7e_)
 
 名词解释：
 - terway-eni：代表动态创建弹性网卡并绑定POD的terway网络模式
@@ -90,5 +90,5 @@ terway的网络性能测试中表现出了与宣传一致的性能，通过与�
 
 ### 欢迎关注
 <a id="jump_10"></a>
-![](http://pp2egchi0.bkt.clouddn.com/Fv816XFbZB2JQazo5LHBoy2_SGVz)
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)
  
