@@ -7,7 +7,7 @@
 前面一篇文章主要是落地容器化之前对基础网络组件的调研及性能测试，感兴趣的同学请参考：[阿里云开源K8S CNI插件terway网络性能测试](https://yq.aliyun.com/articles/696639?spm=a2c4e.11153940.bloghomeflow.62.2b9f291als77PA&do=login&accounttraceid=ea8e5d9d-befd-49b7-822a-3a8f413bb2e7)
 
 目前公司的后端架构基本上是微服务的架构模式，如下图，所有的入站流量均通过API网关进入到后端服务，API网关起到一个“保护神”的作用，监控着所有进入的请求，并具备防刷，监控接口性能，报警等重要功能，流量通过网关后服务间的调用均为RPC调用。
-![](http://pp2egchi0.bkt.clouddn.com/FtqXlQ2CZ6kHd1Rfbf6JRzYxrTIJ)
+![](http://oss.zrbcool.top/FtqXlQ2CZ6kHd1Rfbf6JRzYxrTIJ)
 #### 过渡期
 在经历完微服务改造后，虽然微服务架构给我们带来了不少红利，但是也不免引入一些问题： 
 - 服务拆分导致机器数增多 
@@ -19,19 +19,19 @@
 通过引入一个内网的SLB来解决IC做为我们API网关upstream时，服务发现的问题。并且，可以通过逐步切换接口到SLB上达到渐进式迁移的效果，粒度可以做到接口+百分比级别。
 过渡期间架构图如下所示：
 
-![](http://pp2egchi0.bkt.clouddn.com/FtFETZ7Ngjn7iomBzcTxUN9dk8qc)
+![](http://oss.zrbcool.top/FtFETZ7Ngjn7iomBzcTxUN9dk8qc)
 #### 终态
 全部迁移完成后，所有的机器回收，如下图所示：
-![](http://pp2egchi0.bkt.clouddn.com/FkN4eqHNFlqruc8Z7oG_SfKllhgs)
+![](http://oss.zrbcool.top/FkN4eqHNFlqruc8Z7oG_SfKllhgs)
 其实两层SLB是会有浪费的，但由于我们的API网关目前承担着重要的作用，必须找到替代方案才能去掉。
 我们也尝试调研了用定制IC，或者Service Mesh架构的Istio方案来解决，由于当时Istio 1.1还没发布，并且大规模使用的案例太少，所以我们保守的选择了目前的这种折中方案，后续要切换到Istio上也不是很麻烦。
 #### 按业务线分组IC
-![](http://pp2egchi0.bkt.clouddn.com/FnmAS0JoxHAx9PT8PcJghkmUPUUY)
+![](http://oss.zrbcool.top/FnmAS0JoxHAx9PT8PcJghkmUPUUY)
 默认Kubernetes所有的流量都由一组默认的IC来承担，这个方案我们从一开始就是否定的，所以通过部署多组IC来达到一定的隔离是必要的。最终会是上面图的那个形态。
 ### 实践篇
 #### 如何启用多IC
 查看IC的启动命令参数，可以找到：
-![](http://pp2egchi0.bkt.clouddn.com/Fl4jrnaE1UOSKQSp-yZ7Oa2jynun)
+![](http://oss.zrbcool.top/Fl4jrnaE1UOSKQSp-yZ7Oa2jynun)
 其意思是只关注携带annotation为"kubernetes.io/ingress.class"，并且与IC启动参数参数--ingress-class的值相同的Ingress定义，不符合的会被忽略，这样就做到了多组IC，Ingress定义之间的隔离。
 例如：
 ```
@@ -70,7 +70,7 @@ spec:
         path: /
 ```
 接下来我们来看下IC在Kubernetes内部署的资源结构，如图所示：
-![](http://pp2egchi0.bkt.clouddn.com/FhnUMZTT4ll37v4qUjIZSssEMwjT)
+![](http://oss.zrbcool.top/FhnUMZTT4ll37v4qUjIZSssEMwjT)
 可以看到一组IC其实由以下几部分组成：
 - ServiceAccount，ClusterRole，ClusterRoleBinding：权限RBAC定义
 - Deployment：控制controller的部署，并依赖ServiceAccount，Configmap，Service
@@ -100,7 +100,7 @@ E0416 11:31:50.831279       6 leaderelection.go:304] Failed to update lock: conf
 ##### 方式一 externalTrafficPolicy=Cluster
 Service的spec.externalTrafficPolicy当为Cluster的时候：
 集群当中的每台主机都可以充当三层路由器，起到负载均衡及转发的作用，但是由于其对请求包进行了SNAT操作，如图所示：
-![](http://pp2egchi0.bkt.clouddn.com/Fn5Lpn7EUvC7xXOUCkNIHCHpDbNB)
+![](http://oss.zrbcool.top/Fn5Lpn7EUvC7xXOUCkNIHCHpDbNB)
 这样导致IC的POD内获取到的client-ip会是转发包过来的那个worker节点的IP，所以在这个模式下我们无法获取客户端的真实IP，如果我们不关心客户端真实IP的情况，可以使用这种方式，然后将所有的worker节点IP加入到SLB的后端服务列表当中即可。
 ##### 方式二 externalTrafficPolicy=Local
 Service的spec.externalTrafficPolicy当为Local的时候：
@@ -151,11 +151,11 @@ initContainers:
 #### 客户端真实IP问题
 小流量灰度期间业务同学反馈说第三方的反作弊发现我们调用他们的接口异常，一轮分析下来发现，原来是发给第三方请求中携带的客户端IP被写为了我们API网关的主机IP 
 还记得前面的架构图吗？
-![](http://pp2egchi0.bkt.clouddn.com/FkN4eqHNFlqruc8Z7oG_SfKllhgs)
+![](http://oss.zrbcool.top/FkN4eqHNFlqruc8Z7oG_SfKllhgs)
 出现这个问题的原因就是我们的IC被放到了OpenResty后面，查看到IC的template中对X-REAL-IP设置的代码部分如下：
-![](http://pp2egchi0.bkt.clouddn.com/Fk2yvF82fpL6_KP3fkOErj5oZJ5X)
+![](http://oss.zrbcool.top/Fk2yvF82fpL6_KP3fkOErj5oZJ5X)
 这个the_real_ip又是哪来的呢？
-![](http://pp2egchi0.bkt.clouddn.com/Fqle-PiPDR9AZNmgpUDwWB-qZ2oI) 
+![](http://oss.zrbcool.top/Fqle-PiPDR9AZNmgpUDwWB-qZ2oI) 
 可以看到默认情况下，是从remote_addr这个变量获取，在我们的场景下remote_addr就会是API网关的主机IP，所以我们需要修改其为API网关为我们设置好的名为X_REAL_IP的header。我们的做法是将template文件导出修改并以congfigmap的方式挂载进镜像，覆盖原来的配置，配置如下：
 ```
 apiVersion: extensions/v1beta1
@@ -184,8 +184,8 @@ spec:
 至此问题解决
 ### 监控篇 monitoring
 在现有的CooHua API网关上，已经有比较详细的各种指标监控，由于ingress-controller也暴露了prometheus的metrics，所以也很简单的直接部署了社区版的dashboard，并对其进行了简单的修改，如下图所示：
-![](http://pp2egchi0.bkt.clouddn.com/FogzrP8HpPTmXz-CR4Gy6WrBQ5D4)
-![](http://pp2egchi0.bkt.clouddn.com/FkkB6_9BRIDsV9vWhuqR4rqReMLY)
+![](http://oss.zrbcool.top/FogzrP8HpPTmXz-CR4Gy6WrBQ5D4)
+![](http://oss.zrbcool.top/FkkB6_9BRIDsV9vWhuqR4rqReMLY)
 监控部署的参考文档奉上：[请点击我](https://kubernetes.github.io/ingress-nginx/user-guide/monitoring/) 
 自定义的dashboard上传到我个人的github上了：[请点击我](https://github.com/zrbcool/blog-public/blob/master/k8s%20ingress%20resources/customized%20ingress%20dashboard.json)
 ### Troubleshooting篇
