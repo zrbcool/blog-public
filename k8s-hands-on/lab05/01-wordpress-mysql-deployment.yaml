@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: wordpress
+  name: wordpress
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress 
+    spec:
+      containers:
+      - image: wordpress:latest
+        imagePullPolicy: IfNotPresent
+        name: wordpress
+        env:
+          - name: WORDPRESS_DB_HOST
+            value: "127.0.0.1"
+          - name: WORDPRESS_DB_USER
+            value: "root"
+          - name: WORDPRESS_DB_PASSWORD
+            value: "passw0rd"
+      - image: mysql:5.7.26
+        imagePullPolicy: IfNotPresent
+        name: mysql
+        env:
+          - name: MYSQL_ROOT_PASSWORD 
+            value: "passw0rd"
+          - name: MYSQL_DATABASE
+            value: "wordpress"
+
+
