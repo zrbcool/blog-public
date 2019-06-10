@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: wordpress
+  name: wordpress 
+spec:
+  containers:
+  - image: wordpress:latest 
+    imagePullPolicy: IfNotPresent
+    name: wordpress
