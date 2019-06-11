@@ -5,6 +5,8 @@ metadata:
     app: wordpress
   name: wordpress
 spec:
+  strategy:
+    type: Recreate
   replicas: 1 
   selector:
     matchLabels:
