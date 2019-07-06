@@ -1,4 +1,3 @@
-
 ### JAVA
 使用FlameGraph分析JAVA应用性能  [[掘金]](https://juejin.im/post/5d207690e51d45775746b9a4 "掘金地址")  
 
@@ -8,6 +7,9 @@
 ### 阿里云容器服务AKS实践系列
 阿里云容器服务cni网络插件terway非官方网络性能测试 [[掘金]](https://juejin.im/post/5d20738051882571021b12b8 "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/696639)  
 阿里云容器服务Kubernetes实践系列 - Ingress篇 [[掘金]](https://juejin.im/post/5d207419e51d4550723b1464 "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/699445)  
+### K8S
+K8S避坑指南 - Deployment更新POD内容器无法收到SIGTERM信号 [[掘金]](https://juejin.im/post/5d208bc8e51d4556f76e8111 "掘金地址")  
+
 ### K8S自己动手系列
 K8S自己动手系列 - 2.5 - StatefulSet & Grafana [[掘金]](https://juejin.im/post/5d2068205188251d00042ec7 "掘金地址")   
 K8S自己动手系列 - 2.4 - Service [[掘金]](https://juejin.im/post/5d206ad25188253d7201c19e "掘金链接")  
