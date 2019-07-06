@@ -13,7 +13,7 @@ K8S自己动手系列 - 2.5 - StatefulSet & Grafana [[掘金]](https://juejin.im
 K8S自己动手系列 - 2.4 - Service [[掘金]](https://juejin.im/post/5d206ad25188253d7201c19e "掘金链接")  
 K8S自己动手系列 - 2.3 - PV & PVC [[掘金]](https://juejin.im/post/5d206906f265da1bd2610d56 "掘金链接")   
 K8S自己动手系列 - 2.2 - Deployment [[掘金]](https://juejin.im/post/5d20688a6fb9a07ecb0bc971 "掘金链接")  
-K8S自己动手系列 - 2.1 - Pod [[掘金]](https://juejin.im/post/5d2068205188251d00042ec7 "掘金链接") 
+K8S自己动手系列 - 2.1 - Pod [[掘金]](https://juejin.im/post/5d2068205188251d00042ec7 "掘金链接")  
 K8S自己动手系列 - 1.3 - Taint & Affinity [[掘金]](https://juejin.im/post/5d20649ff265da1b61501982 "掘金链接")  
 K8S自己动手系列 - 1.2 - 节点管理 [[掘金]](https://juejin.im/post/5d20640951882572dc2b6403 "掘金链接")  
 K8S自己动手系列 - 1.1 - 集群搭建 [[掘金]](https://juejin.im/post/5d20628ee51d455d850d3b58 "掘金链接")  
