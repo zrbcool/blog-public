@@ -1,3 +1,7 @@
+# 原创技术博客文章索引
+![GitHub stars](https://img.shields.io/github/stars/zrbcool/prometheus-lua-nginx.svg?style=social)
+![GitHub followers](https://img.shields.io/github/followers/zrbcool.svg?style=social)
+
 ### JAVA
 使用FlameGraph分析JAVA应用性能  [[掘金]](https://juejin.im/post/5d207690e51d45775746b9a4 "掘金地址")  
 
