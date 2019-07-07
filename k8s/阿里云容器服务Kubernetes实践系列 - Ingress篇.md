@@ -22,7 +22,6 @@
 ![](http://oss.zrbcool.top/FtFETZ7Ngjn7iomBzcTxUN9dk8qc)
 #### 终态
 全部迁移完成后，所有的机器回收，如下图所示：
-![](http://oss.zrbcool.top/FkN4eqHNFlqruc8Z7oG_SfKllhgs)
 其实两层SLB是会有浪费的，但由于我们的API网关目前承担着重要的作用，必须找到替代方案才能去掉。
 我们也尝试调研了用定制IC，或者Service Mesh架构的Istio方案来解决，由于当时Istio 1.1还没发布，并且大规模使用的案例太少，所以我们保守的选择了目前的这种折中方案，后续要切换到Istio上也不是很麻烦。
 #### 按业务线分组IC
