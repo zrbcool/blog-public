@@ -1,3 +1,5 @@
+### 背景
+公司落地容器化及Kubernetes，既有的监控部署在虚拟机上，需要迁移到K8S集群中来缩减虚拟机的开销，我们基于Prometheus的监控系统搭建近一年，保存数据周期为180填，目前的数据量在800GB左右，下面讲述的是我们的迁移方案及迁移过程。
 ### 方案
 #### 1. Kubernetes集群内
 - 创建好存储，PV，PVC
@@ -58,6 +60,7 @@ drwxrwS---    2 root     2000         16384 Jul  8 02:37 lost+found
 ```
 接下来我们kubectl delete删除刚刚创建的所有对象，把yaml准备好，然后把磁盘挂载到计划迁移的机器上，同步数据。
 #### 将磁盘挂载到旧Prometheus机器上
+挂载创建的目标磁盘到旧Prometheus的虚拟机上，然后用rsync将数据追平，注意用--bwlimit控制速度，不然可能会导致磁盘打满影响线上性能，我们是SSD盘所以指定200M依然剩余100M的速度空间保证线上使用。
 ```bash
 rsync -av --bwlimit=200M --delete --progress --log-file=/tmp/rsync.log /data/coohua/prometheus/data /data1/data
 ```
@@ -133,7 +136,7 @@ vdc               0.00     0.00    0.00  640.00     0.00   300.49   961.58   127
 # umount -l /data1
 # chown -R 1000:2000 /data1/data
 ```
-PV/PVC没删干净会出现下面的问题，PV处于Released不能再次使用
+PV/PVC没删干净会出现下面的问题，PV处于Released状态不能再次使用
 ```bash
 kubectl get pvc -n monitoring pv-metrics-ecs-promethues
 NAME                        STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
@@ -143,8 +146,8 @@ kubectl get pv -n monitoring pv-metrics-ecs-promethues
 NAME                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                                  STORAGECLASS   REASON   AGE
 pv-metrics-ecs-promethues   1Ti        RWX            Retain           Released   monitoring/pv-metrics-ecs-promethues   disk                    3h32m
 ```
-简单粗暴的删除重建即可  
-然后在Kubernetes内启动原来准备好的StatefulSet即可，就会直接用迁移后的数据了，然后创建NodePort类型的Service，用来让还没迁移进K8S的Grafana连接
+简单粗暴的删除PV/PVC重建即可  
+然后在Kubernetes内启动原来准备好的StatefulSet即可，就会直接用迁移后的数据了，然后创建NodePort类型的Service，用来让还没迁移进K8S的Grafana连接  
 接下来修改Grafana的数据源，指向迁移后的Prometheus，大功告成，迁移过程中断服务丢失的数据<10分钟
 ![](http://oss.zrbcool.top/picgo/prom-migration-02.png)
 ### 总结 & 思考
