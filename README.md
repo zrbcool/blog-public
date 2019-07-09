@@ -12,6 +12,7 @@
 阿里云容器服务cni网络插件terway非官方网络性能测试 [[掘金]](https://juejin.im/post/5d20738051882571021b12b8 "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/696639)  
 阿里云容器服务Kubernetes实践系列 - Ingress篇 [[掘金]](https://juejin.im/post/5d207419e51d4550723b1464 "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/699445)  
 ### K8S
+K8S实践 - Promethues从VM迁移K8S实录 [[掘金]](https://juejin.im/post/5d23f0e36fb9a07ed740a2a2) [[云栖博客]](https://yq.aliyun.com/articles/708186)  
 K8S避坑指南 - Deployment更新POD内容器无法收到SIGTERM信号 [[掘金]](https://juejin.im/post/5d208bc8e51d4556f76e8111 "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/705984)  
 Kubernetes Tips系列 - 合理设计你的镜像名称及tag [[掘金]](https://juejin.im/post/5d2183eff265da1bca51fc3f "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/707985)  
 
