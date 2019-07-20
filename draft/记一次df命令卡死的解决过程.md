@@ -1,3 +1,0 @@
-```bash
-# umount -l /mnt
-```
