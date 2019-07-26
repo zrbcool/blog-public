@@ -41,7 +41,7 @@ export PERF_RECORD_SECONDS=45
 
 ### 结果展示
 
-svg格式的图片可以下钻，点击查看: [](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)  [http://oss.zrbcool.top/picgo/flamegraph-21322.svg](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)
+svg格式的图片可以下钻，点击查看: 
 
 ![](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)
 
@@ -51,7 +51,11 @@ https://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/
 https://github.com/mboussaa/docker-flame-graphs
 http://www.batey.info/docker-jvm-flamegraphs.html
 
+
+### 容器内如何分析？
+请参考笔者的另一篇文章[Docker中使用FlameGraph分析JVM应用性能](https://juejin.im/post/5d3300cf51882539af1922be)
 ### 更多参考
+```bash
 https://www.meiwen.com.cn/subject/xafqkqtx.html
 https://bugs.openjdk.java.net/browse/JDK-8068945
 https://bugs.openjdk.java.net/browse/JDK-6515172
