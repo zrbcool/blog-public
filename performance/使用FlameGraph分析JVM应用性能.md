@@ -36,13 +36,21 @@ export FLAMEGRAPH_DIR=/root/git/FlameGraph
 -XX:+PreserveFramePointer
 
 perf-java-flames 21322
+export PERF_RECORD_SECONDS=45
 ```
 
 ### 结果展示
 
-svg格式的图片可以下钻，点击查看: [](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)[http://oss.zrbcool.top/picgo/flamegraph-21322.svg](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)
+svg格式的图片可以下钻，点击查看: [](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)  [http://oss.zrbcool.top/picgo/flamegraph-21322.svg](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)
 
 ![](http://oss.zrbcool.top/picgo/flamegraph-21322.svg)
+
+### Docker内怎么办？
+https://github.com/jvm-profiling-tools/perf-map-agent/issues/50
+https://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/
+https://github.com/mboussaa/docker-flame-graphs
+http://www.batey.info/docker-jvm-flamegraphs.html
+
 ### 更多参考
 https://www.meiwen.com.cn/subject/xafqkqtx.html
 https://bugs.openjdk.java.net/browse/JDK-8068945
