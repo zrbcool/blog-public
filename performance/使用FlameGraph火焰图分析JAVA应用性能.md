@@ -1,9 +1,10 @@
+### 开源项目推荐
+[Pepper Metrics](https://github.com/zrbcool/pepper-metrics)是我与同事开发的一个开源工具(https://github.com/zrbcool/pepper-metrics)，其通过收集jedis/mybatis/httpservlet/dubbo/motan的运行性能统计，并暴露成prometheus等主流时序数据库兼容数据，通过grafana展示趋势。其插件化的架构也非常方便使用者扩展并集成其他开源组件。  
+请大家给个star，同时欢迎大家成为开发者提交PR一起完善项目。
+
 ### 安装及使用
-
 安装前提软件
-
 #### centos
-
 ```java
 yum install perf -y
 yum install gcc -y
@@ -51,7 +52,6 @@ https://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/
 https://github.com/mboussaa/docker-flame-graphs
 http://www.batey.info/docker-jvm-flamegraphs.html
 
-
 ### 容器内如何分析？
 请参考笔者的另一篇文章[Docker中使用FlameGraph分析JVM应用性能](https://juejin.im/post/5d3300cf51882539af1922be)
 ### 更多参考
@@ -67,4 +67,10 @@ https://gperftools.github.io/gperftools/pprof-vsnprintf-big.gif
 https://github.com/jvm-profiling-tools/perf-map-agent
 http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html#Java
 http://www.brendangregg.com/blog/2014-06-12/java-flame-graphs.html
-https://github.com/brendangregg/FlameGraph
+https://github.com/brendangregg/FlameGraph  
+```
+
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

@@ -159,3 +159,7 @@ spec:
     persistentVolumeClaim:
       claimName: ad-web-impl-prod
 ```
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

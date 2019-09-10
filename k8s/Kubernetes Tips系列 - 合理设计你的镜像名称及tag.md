@@ -18,3 +18,7 @@
 这个是我们jenkins系统这次构建的构建号，通过构建号能够找到构建日志信息
 #### gitCommitHash
 这个是git的短hash，在git当中可以通过这个hash值找到提交点的各种详细信息，甚至提交点被合并到了哪些分支等等的信息，我们可以通过提交点来回退版本，更精准。
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

@@ -47,3 +47,7 @@ root       263    49  0 09:59 pts/0    00:00:00 ps -ef
 ![](http://oss.zrbcool.top/picgo/dockerize-2019-06-20-sigkill-6.png)然后重启，再查看重启前POD留下的日志
 
 ![](http://oss.zrbcool.top/picgo/dockerize-2019-06-20-sigkill-5.png)问题解决！
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

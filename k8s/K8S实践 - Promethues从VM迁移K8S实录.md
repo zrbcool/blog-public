@@ -158,3 +158,7 @@ pv-metrics-ecs-promethues   1Ti        RWX            Retain           Released 
 #### 慎用NFS为存储的PV
 第一次尝试迁移使用了NFS，因为云提供商的特性，NFS较为经济，而且可以多处挂载，数据的管理也是十分的便利，但是迁移过来后测试发现，一个大的查询就差点把网卡跑满，load瞬间爆炸，赶紧下线。所以在重IO的场景，真的慎重考虑NFS，一定要做好性能评估。
 
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

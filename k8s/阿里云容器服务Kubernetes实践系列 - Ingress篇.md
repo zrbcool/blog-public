@@ -197,3 +197,7 @@ https://yq.aliyun.com/articles/645856?spm=a2c4e.11163080.searchblog.97.764b2ec1h
 http://bogdan-albei.blogspot.com/2017/09/kernel-tuning-in-kubernetes.html
 https://danielfm.me/posts/painless-nginx-ingress.html
 https://www.asykim.com/blog/deep-dive-into-kubernetes-external-traffic-policies
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

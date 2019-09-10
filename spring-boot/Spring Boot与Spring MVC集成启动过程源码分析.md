@@ -398,10 +398,10 @@ class ServletWebServerFactoryConfiguration {
 这块Spring Boot根据@ConditionalOnClass判断当前运行时环境是否符合条件，即包含了tomcat的jar包，如果满足则创建TomcatServletWebServerFactory的Bean实例加入spring容器管理，后面有用。
 #### ServletWebServerApplicationContext
 实际启动时，启动的是其子类AnnotationConfigServletWebServerApplicationContext，我们来看下SpringApplication类，实际上SpringApplication在运行时根据情况决定使用哪种ApplicationContext
-![](http://oss.zrbcool.top/picgo/spring-boot-mvc-02.png-gh)
-查看createApplicationContext()方法
-![](http://oss.zrbcool.top/picgo/spring-boot-mvc-01.png-gh)
-那么这个this.webApplicationType又是哪来的值呢？
+![](http://oss.zrbcool.top/picgo/spring-boot-mvc-02.png-gh)  
+查看createApplicationContext()方法  
+![](http://oss.zrbcool.top/picgo/spring-boot-mvc-01.png-gh)  
+那么这个this.webApplicationType又是哪来的值呢？ 
 我们看下这个构造方法
 ```java
 public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {
@@ -517,4 +517,7 @@ protected final void register(String description, ServletContext servletContext)
 ```
 addRegistration方法又是一个模板方法，实现就是前面ServletRegistrationBean的addRegistration实现，而onStartup方法会在SpringApplication.run()方法的流程中被调用到，讲主流程的时候已经讲到，这里不再赘述  
 这样就将DispatchServlet与Tomcat进行了集成，DispatchServlet使用模板方法设计模式，将具体的请求分配给不同的handler处理，这个后面会讲到，本篇就主要专注在Spring Boot与Spring MVC及Tomcat的集成原理部分。
-
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

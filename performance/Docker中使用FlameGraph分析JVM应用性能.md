@@ -70,3 +70,7 @@ https://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/
 https://github.com/jvm-profiling-tools/perf-map-agent  
 https://medium.com/netflix-techblog/java-in-flames-e763b3d32166  
 ```
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

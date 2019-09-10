@@ -2,6 +2,18 @@
 ![GitHub stars](https://img.shields.io/github/stars/zrbcool/prometheus-lua-nginx.svg?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/zrbcool.svg?style=social)
 
+### 作者开源项目
+- Pepper Metrics 
+    - 支持Jedis/Mybatis/Druid/Http/Motan/Dubbo接口性能分析内置Grafana展示大盘的性能监控利器。
+    - GitHub地址：[https://github.com/zrbcool/pepper-metrics](https://github.com/zrbcool/pepper-metrics)
+    - 快速上手项目地址：[https://github.com/zrbcool/pepper-metrics-demo](https://github.com/zrbcool/pepper-metrics-demo)
+    - 在线Demo展示地址：[http://pepper-metrics.zrbcool.top/](http://pepper-metrics.zrbcool.top/)
+- prometheus-lua-nginx
+    - 集成OpenResty/Nginx通过prometheus的LUA库对Nginx/OpenResty进行性能收集并输出到prometheus，通过精巧设计的预计算rules进行预聚合，最终通过内置的Grafana展示大盘展示全站的接口性能趋势。
+    - GitHub地址：[https://github.com/zrbcool/prometheus-lua-nginx](https://github.com/zrbcool/prometheus-lua-nginx)    
+
+**请帮忙点star支持！谢谢**
+
 ### JAVA
 Spring Boot与Spring MVC集成启动过程源码分析 [[掘金]](https://juejin.im/post/5d649ca4518825168d37c43d "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/715986)  
 2019-07-24 实战火焰图分析CPU使用率解决JAVA应用线上性能问题 [[掘金]](https://juejin.im/post/5d3a6e26f265da1b6c5fbb8a "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/710911)  
@@ -38,5 +50,7 @@ Istio Mixer Adapter开发 （三）自定义Mixer Grpc Adapter部署 [[掘金]](
 Istio Mixer Adapter开发 （二）Istio环境搭建 [[掘金]](https://juejin.im/post/5c6bcaf2518825627d37230d "掘金链接")  
 Istio Mixer Adapter开发 （一）K8S环境搭建 [[掘金]](https://juejin.im/post/5c6ba4866fb9a049bd42de3a "掘金链接")  
 
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
 ### 微信订阅号
 ![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)
