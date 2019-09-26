@@ -1,3 +1,7 @@
+## 开源项目推荐
+[Pepper Metrics](https://github.com/zrbcool/pepper-metrics)是我与同事开发的一个开源工具(https://github.com/zrbcool/pepper-metrics)，其通过收集jedis/mybatis/httpservlet/dubbo/motan的运行性能统计，并暴露成prometheus等主流时序数据库兼容数据，通过grafana展示趋势。其插件化的架构也非常方便使用者扩展并集成其他开源组件。  
+请大家给个star，同时欢迎大家成为开发者提交PR一起完善项目。
+
 ## 前言
 前面的文章，我们讲述了如何通过perf的方式对java程序进行性能剖析，并生成FlameGraph火焰图，但是实际生产中，很多企业会将java部署在docker容器当中，这时对docker内运行的java进程进行剖析便成为一件很麻烦的事情。
 
