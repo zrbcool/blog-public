@@ -15,6 +15,7 @@
 **请帮忙点star支持！谢谢**
 
 ### JAVA
+RocketMQ源码解析 - 高性能的秘密武器 - mmap [[掘金]](https://juejin.im/post/5dc146995188255f8268a668 "掘金地址")  
 Spring Boot中@ConfigurationProperties注解实现原理源码解析 [[掘金]](https://juejin.im/post/5b6a40ec5188250e6468cc10 "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/719363)
 Spring Boot与Spring MVC集成启动过程源码分析 [[掘金]](https://juejin.im/post/5d649ca4518825168d37c43d "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/715986)  
 2019-07-24 实战火焰图分析CPU使用率解决JAVA应用线上性能问题 [[掘金]](https://juejin.im/post/5d3a6e26f265da1b6c5fbb8a "掘金地址") [[云栖博客]](https://yq.aliyun.com/articles/710911)  
