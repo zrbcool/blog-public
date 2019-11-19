@@ -53,7 +53,7 @@ public PutMessageResult putMessage(final MessageExtBrokerInner msg) {
 > [java中的mmap实现](https://www.iteye.com/blog/xiaoz5919-2093323)  
 > [深度分析mmap：是什么 为什么 怎么用 性能总结](https://blog.csdn.net/qq_33611327/article/details/81738195)  
 #### MappedFile
-接下来我们需要重点聊下MappedFile，因为RMQ真正高性能的黑科技在于合理的利用了mmap内存映射文件技术及堆外内存操作ByteBuffer，这些操作都被封装到了这个类当中。  
+接下来我们需要重点聊下MappedFile，因为RMQ真正高性能的黑科技在于合理的利用了mmap内存映射文件技术及堆外内存操作MappedByteBuffer，这些操作都被封装到了这个类当中。  
 
 初始化，在RMQ启动时相应的线程会构建MappedFile完成内存映射操作，下面两行便是关键代码
 ```java
