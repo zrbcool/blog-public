@@ -28,3 +28,7 @@ Redis集群的机制避免了代理模式的性能损耗，但是由于其key分
 #### gossip协议
 Gossip是一种去中心化思路的分布式协议，解决状态在集群中的传播和状态一致性的保证两个问题。
 Gossip在去中心化的结构下，通过信息的部分传递，达到全集群的状态信息传播，传播的时间收敛在O(Log(N))以内，其中N是节点的数量。同时基于Gossip协议，可以构建出状态一致的各种解决方案。
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

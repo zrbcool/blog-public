@@ -98,3 +98,7 @@ https://redis.io/topics/persistence
 https://redis.io/topics/replication
 https://www.cnblogs.com/lukexwang/p/4711977.html
 http://www.cnblogs.com/biyeymyhjob/archive/2012/07/20/2601655.html
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
+![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)

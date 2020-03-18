@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: monitor
+    type: grafana
+  name: monitor-grafana
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: monitor
+      type: grafana
+  serviceName: grafana
+  template:
+    metadata:
+      labels:
+        app: monitor
+        type: grafana
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker01
+      containers:
+      - name: grafana
+        image: grafana/grafana:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+          name: grafana
+        volumeMounts:
+        - name: grafana-pv-storage
+          mountPath: /var/lib/grafana
+      securityContext:
+        runAsGroup: 472
+        runAsUser: 472
+        fsGroup: 472
+      volumes:
+      - name: grafana-pv-storage
+        persistentVolumeClaim:
+          claimName: grafana-pv-claim 

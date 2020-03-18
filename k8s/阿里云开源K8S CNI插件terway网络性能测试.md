@@ -88,7 +88,8 @@ ping -c 30 172.16.13.218
 terway的网络性能测试中表现出了与宣传一致的性能，通过与作者的沟通中了解到，由于将弹性网卡直接放入POD的namespace内，虽然网卡驱动的中断依然由宿主机内核完成，但是网络包不会出现在宿主机namespace的网络栈，减少了宿主机的一层cni网桥转发及复杂路由的性能损失，这也是为什么在某些场景下超过宿主机网络栈性能的表现。
 
 
-### 欢迎关注
-<a id="jump_10"></a>
+### 作者其他文章
+[https://github.com/zrbcool/blog-public](https://github.com/zrbcool/blog-public)  
+### 微信订阅号
 ![](http://oss.zrbcool.top/Fv816XFbZB2JQazo5LHBoy2_SGVz)
  
